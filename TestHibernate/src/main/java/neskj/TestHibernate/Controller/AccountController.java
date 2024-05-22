@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.logging.Logger;
 
 @RestController
 public class AccountController {
+
+    private final static Logger logger = Logger.getLogger(AccountController.class.getName());
 
     private final AccountService service;
 
@@ -21,8 +23,9 @@ public class AccountController {
     }
 
     @PostMapping("/data")
-    public void updateData(@RequestBody Account account){
+    public void updateData(@RequestBody Account account) {
 
+        logger.info("Metod -->> POST get a new object :" + account.toString());
         service.putToRepository(account);
     }
 
@@ -30,6 +33,7 @@ public class AccountController {
     public Iterable<Account>showAllData(){
 
      Iterable<Account> list=service.getFromRepository();
+        logger.info("Metod -->> GET return data from DB :\n" + list.toString());
 
         return list;
     }

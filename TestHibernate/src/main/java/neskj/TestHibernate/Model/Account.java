@@ -27,4 +27,8 @@ public class Account {
         return message;
     }
 
+    @Override
+    public String toString() {
+        return "\nAccount: \nId: " + id + "\nMessage: " + message + "\n";
+    }
 }
